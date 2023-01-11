@@ -7,11 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InitialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {[weak self] in
+            self?.performSegue(withIdentifier: Constants.Routes.goToHome, sender: nil)
+        }
     }
 
 
