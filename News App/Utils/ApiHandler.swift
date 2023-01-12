@@ -34,11 +34,10 @@ class ApiHandler {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let dictionary = json as? [String: Any] else {
                     print("Error casting JSON to dictionary")
-                    //errorCompletionHandlerMessage("Failed to fetch data")
                     completionHandler([], "Failed to fetch data")
                     return
                 }
-                //print(dictionary["articles"])
+
                 guard let articles = dictionary["articles"] else {
                     print("Articles not found")
                     completionHandler([], "Articles not found")
@@ -49,15 +48,9 @@ class ApiHandler {
                 completionHandler(newsModels, nil)
             } catch {
                 print("Error parsing JSON: \(error)")
+                completionHandler([], "Error parsing JSON: \(error)")
             }
             print(data)
-            
-            //            do {
-            //                let users = try JSONDecoder().decode([NewsModel].self, from: data)
-            //                print(users)
-            //            } catch {
-            //                print("Error decoding users: \(error)")
-            //            }
         }
         task.resume()
     }

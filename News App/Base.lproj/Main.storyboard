@@ -70,10 +70,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eu6-3Y-QqP" userLabel="Category Collection View">
-                                <rect key="frame" x="20" y="190" width="335" height="60"/>
+                                <rect key="frame" x="20" y="190" width="335" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Fuq-T2-nvX"/>
+                                    <constraint firstAttribute="height" constant="80" id="Fuq-T2-nvX"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mB5-Rd-eVs">
                                     <size key="itemSize" width="128" height="128"/>
@@ -83,7 +83,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2kK-MZ-9uz">
-                                        <rect key="frame" x="0.0" y="-34" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="-24" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ggC-HS-ddQ">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -116,7 +116,7 @@
                             <constraint firstItem="inj-dP-7KS" firstAttribute="centerY" secondItem="B6T-Af-LCo" secondAttribute="centerY" id="HLP-Ct-DGr"/>
                             <constraint firstItem="t1a-CS-IiY" firstAttribute="leading" secondItem="KR8-Hr-HS2" secondAttribute="leading" constant="20" id="J0G-zY-orO"/>
                             <constraint firstItem="KR8-Hr-HS2" firstAttribute="trailing" secondItem="Eu6-3Y-QqP" secondAttribute="trailing" constant="20" id="KC7-Os-Jqv"/>
-                            <constraint firstItem="t1a-CS-IiY" firstAttribute="top" secondItem="Eu6-3Y-QqP" secondAttribute="bottom" constant="20" id="ecT-uO-2Xn"/>
+                            <constraint firstItem="t1a-CS-IiY" firstAttribute="top" secondItem="Eu6-3Y-QqP" secondAttribute="bottom" id="ecT-uO-2Xn"/>
                             <constraint firstItem="Eu6-3Y-QqP" firstAttribute="leading" secondItem="KR8-Hr-HS2" secondAttribute="leading" constant="20" id="mbH-vY-c1z"/>
                             <constraint firstItem="KR8-Hr-HS2" firstAttribute="trailing" secondItem="1Uw-b3-Mcg" secondAttribute="trailing" constant="20" id="prY-sD-pnd"/>
                             <constraint firstItem="KR8-Hr-HS2" firstAttribute="trailing" secondItem="t1a-CS-IiY" secondAttribute="trailing" constant="20" id="rb2-KL-9SB"/>
@@ -130,6 +130,7 @@
                     <navigationItem key="navigationItem" id="zEO-tB-ffw"/>
                     <connections>
                         <outlet property="activityIndicator" destination="inj-dP-7KS" id="xaD-yX-skC"/>
+                        <outlet property="collectionView" destination="Eu6-3Y-QqP" id="jch-DL-7Oy"/>
                         <outlet property="tableView" destination="t1a-CS-IiY" id="qz2-wV-Z9Y"/>
                     </connections>
                 </viewController>

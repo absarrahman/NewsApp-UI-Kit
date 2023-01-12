@@ -13,17 +13,17 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var selectedNewsList: [NewsModel] = []
+    
+    var selectedCategory: NewsCategory = .all
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        tableView.dataSource = self
+    fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
-        ApiHandler.fetchAllDataBased(on: .business) { newsModels, error in
+        ApiHandler.fetchAllDataBased(on: selectedCategory) { newsModels, error in
             if let error = error {
                 print("Error occurred \(error)")
                 return
@@ -37,16 +37,16 @@ class NewsViewController: UIViewController {
         }
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        collectionView.dataSource = self
+        initiateFetch()
+        
+        collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
+    }
     
 }
 
@@ -60,6 +60,28 @@ extension NewsViewController : UITableViewDataSource {
         let model = selectedNewsList[indexPath.row]
         cell.textLabel?.text = model.title
         cell.detailTextLabel?.text = model.author
+        return cell
+    }
+    
+    
+}
+
+
+// MARK: - Collection View Datasource
+
+extension NewsViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        NewsCategory.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let isSelectedValue = indexPath.row == 1
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CategoryCollectionViewCell
+        cell.buttonLabel.text = "Yeet"
+        cell.buttonSelectedStateView.alpha = isSelectedValue ? 1 : 0
+        cell.layer.cornerRadius = 20
+        cell.clipsToBounds = true
+        cell.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return cell
     }
     
