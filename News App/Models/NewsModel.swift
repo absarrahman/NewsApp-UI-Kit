@@ -27,5 +27,5 @@ struct Source: Codable {
 
 // business entertainment general health science sports technology
 enum NewsCategory: String, CaseIterable {
-    case business, entertainment, general, health, science, sports, technology, all
+    case all, business, entertainment, general, health, science, sports, technology
 }

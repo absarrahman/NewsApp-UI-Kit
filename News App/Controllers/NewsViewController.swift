@@ -43,6 +43,7 @@ class NewsViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         collectionView.dataSource = self
+        collectionView.delegate = self
         initiateFetch()
         
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
@@ -75,10 +76,11 @@ extension NewsViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let isSelectedValue = indexPath.row == 1
+        let isSelectedValue = selectedCategory ==  NewsCategory.allCases[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CategoryCollectionViewCell
-        cell.buttonLabel.text = "Yeet"
+        cell.buttonLabel.text = NewsCategory.allCases[indexPath.row].rawValue.capitalized
         cell.buttonSelectedStateView.alpha = isSelectedValue ? 1 : 0
+        cell.bgView.alpha = isSelectedValue ? 1 : 0.5
         cell.layer.cornerRadius = 20
         cell.clipsToBounds = true
         cell.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -86,4 +88,12 @@ extension NewsViewController : UICollectionViewDataSource {
     }
     
     
+}
+
+extension NewsViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCategory = NewsCategory.allCases[indexPath.row]
+        initiateFetch()
+        collectionView.reloadData()
+    }
 }

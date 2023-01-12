@@ -56,6 +56,7 @@
             </constraints>
             <size key="customSize" width="140" height="60"/>
             <connections>
+                <outlet property="bgView" destination="sPB-YP-LNm" id="ftt-qs-QTu"/>
                 <outlet property="buttonLabel" destination="oHs-nk-L7e" id="uFf-rL-TYz"/>
                 <outlet property="buttonSelectedStateView" destination="ucb-LY-md0" id="Z5C-NH-hc4"/>
             </connections>

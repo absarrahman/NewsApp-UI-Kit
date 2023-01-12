@@ -11,6 +11,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var buttonLabel: UILabel!
     
+    @IBOutlet weak var bgView: UIView!
     
     @IBOutlet weak var buttonSelectedStateView: UIView!
     

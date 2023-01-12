@@ -13,4 +13,10 @@ class Constants {
         private init(){}
         static let goToHome = "goToHome"
     }
+    
+    class ColorConstants {
+        private init() {}
+        static let selectedCollectionCell = "SelectedCollectionCellColor"
+        static let unselectedCollectionCell = "UnselectedCollectionCellColor"
+    }
 }
