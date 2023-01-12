@@ -24,3 +24,8 @@ struct Source: Codable {
     let id: String?
     let name: String?
 }
+
+// business entertainment general health science sports technology
+enum NewsCategory: String {
+    case business, entertainment, general, health, science, sports, technology, all
+}

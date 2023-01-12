@@ -23,7 +23,11 @@ class NewsViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         activityIndicator.startAnimating()
-        ApiHandler.fetchAllData { newsModels in
+        ApiHandler.fetchAllDataBased(on: .business) { newsModels, error in
+            if let error = error {
+                print("Error occurred \(error)")
+                return
+            }
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
                 //self?.activityIndicator.hidesWhenStopped
