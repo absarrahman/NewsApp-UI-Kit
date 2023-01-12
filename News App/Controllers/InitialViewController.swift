@@ -12,9 +12,16 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {[weak self] in
             self?.performSegue(withIdentifier: Constants.Routes.goToHome, sender: nil)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.viewControllers.removeAll(where: { vc in
+            vc == self
+        })
     }
 
 
