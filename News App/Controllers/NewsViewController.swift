@@ -19,20 +19,33 @@ class NewsViewController: UIViewController {
     
     var selectedCategory: NewsCategory = .all
     
+    var pageNumber = 1
+    var totalResultCount = 0
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
-        ApiHandler.fetchAllDataBased(on: selectedCategory) { newsModels, error in
+        ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { newsModels, error, totalResults in
             if let error = error {
                 print("Error occurred \(error)")
                 return
             }
+            print(totalResults,newsModels.count, self.pageNumber)
             DispatchQueue.main.async { [weak self] in
-                self?.activityIndicator.stopAnimating()
+                guard let self = self else {
+                    return
+                }
+                self.activityIndicator.stopAnimating()
                 //self?.activityIndicator.hidesWhenStopped
-                self?.selectedNewsList = newsModels
-                self?.tableView.reloadData()
+                self.totalResultCount = totalResults
+                if self.pageNumber > 1 {
+                    self.selectedNewsList.append(contentsOf: newsModels)
+                } else {
+                    self.selectedNewsList = newsModels
+                }
+                
+                self.tableView.reloadData()
             }
         }
     }
@@ -42,6 +55,7 @@ class NewsViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
         initiateFetch()
@@ -59,7 +73,7 @@ extension NewsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let model = selectedNewsList[indexPath.row]
-        cell.textLabel?.text = model.title
+        cell.textLabel?.text = indexPath.row.description
         cell.detailTextLabel?.text = model.author
         return cell
     }
@@ -67,6 +81,14 @@ extension NewsViewController : UITableViewDataSource {
     
 }
 
+extension NewsViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row == selectedNewsList.count - 1) && (selectedNewsList.count < totalResultCount) {
+            pageNumber += 1
+            initiateFetch()
+        }
+    }
+}
 
 // MARK: - Collection View Datasource
 
@@ -92,6 +114,12 @@ extension NewsViewController : UICollectionViewDataSource {
 
 extension NewsViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if selectedCategory == NewsCategory.allCases[indexPath.row] {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            return
+        }
+        pageNumber = 1
         selectedCategory = NewsCategory.allCases[indexPath.row]
         initiateFetch()
         collectionView.reloadData()
