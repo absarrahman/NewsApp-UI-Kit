@@ -72,12 +72,19 @@
                             <constraint firstItem="R12-D4-lYF" firstAttribute="leading" secondItem="cfT-iH-JCe" secondAttribute="trailing" constant="20" id="pad-rr-SJA"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fza-uV-VjG">
+                        <rect key="frame" x="0.0" y="-1" width="341" height="224.66666666666669"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Fza-uV-VjG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9aJ-W9-QTg"/>
                     <constraint firstAttribute="bottom" secondItem="mAW-ni-rtv" secondAttribute="bottom" id="B8r-qA-bUB"/>
                     <constraint firstItem="mAW-ni-rtv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="F1f-fk-xb2"/>
                     <constraint firstAttribute="trailing" secondItem="mAW-ni-rtv" secondAttribute="trailing" id="aZQ-tN-XgS"/>
+                    <constraint firstAttribute="trailing" secondItem="Fza-uV-VjG" secondAttribute="trailing" id="d4T-9R-mBi"/>
+                    <constraint firstAttribute="bottom" secondItem="Fza-uV-VjG" secondAttribute="bottom" id="fHY-fV-cjO"/>
                     <constraint firstItem="mAW-ni-rtv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fKx-V7-cpg"/>
+                    <constraint firstItem="Fza-uV-VjG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jKV-qW-0BP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -92,6 +99,7 @@
     </objects>
     <resources>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

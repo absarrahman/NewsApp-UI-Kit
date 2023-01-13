@@ -79,6 +79,7 @@ extension NewsViewController : UITableViewDataSource {
         cell.authorTitleLabel.text = model.author
         cell.newTitleLabel.text = model.title
         cell.dateLabel.text = model.publishedAt
+        cell.sourceTitleLabel.text = model.source.name
         
         return cell
         
