@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="inj-dP-7KS" id="xaD-yX-skC"/>
                         <outlet property="collectionView" destination="Eu6-3Y-QqP" id="jch-DL-7Oy"/>
+                        <outlet property="searchUiViewHeightConstraint" destination="FLA-fR-fcw" id="KBl-ed-GtZ"/>
                         <outlet property="tableView" destination="t1a-CS-IiY" id="qz2-wV-Z9Y"/>
                     </connections>
                 </viewController>

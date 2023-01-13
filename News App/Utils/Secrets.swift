@@ -9,6 +9,6 @@ import Foundation
 
 // CLASS FOR SECRET KEYS
 class Secret {
-    static let apiKey = ""
+    static let apiKey = "5f32e275af4d45f4aa6609d4ac880fcc"
     static let baseUrl = "https://newsapi.org/v2/top-headlines?country=us&pageSize=10"
 }

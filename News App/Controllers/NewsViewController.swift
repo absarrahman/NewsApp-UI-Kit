@@ -10,6 +10,7 @@ import UIKit
 class NewsViewController: UIViewController {
     
     
+    @IBOutlet weak var searchUiViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,6 +61,7 @@ class NewsViewController: UIViewController {
         collectionView.delegate = self
         initiateFetch()
         
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "newsTableViewCell")
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
     }
     
