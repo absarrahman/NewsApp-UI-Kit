@@ -60,6 +60,7 @@ class NewsViewController: UIViewController {
         collectionView.delegate = self
         initiateFetch()
         
+        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
     }
     
@@ -71,11 +72,17 @@ extension NewsViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
         let model = selectedNewsList[indexPath.row]
-        cell.textLabel?.text = indexPath.row.description
-        cell.detailTextLabel?.text = model.author
+//        cell.textLabel?.text = indexPath.row.description
+//        cell.detailTextLabel?.text = model.author
+        cell.authorTitleLabel.text = model.author
+        cell.newTitleLabel.text = model.title
+        cell.dateLabel.text = model.publishedAt
+        cell.sourceTitleLabel.text = model.source.name
+        
         return cell
+        
     }
     
     
