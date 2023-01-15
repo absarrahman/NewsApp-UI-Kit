@@ -26,27 +26,48 @@ class NewsViewController: UIViewController {
     
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
-        ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { newsModels, error, totalResults in
-            if let error = error {
+        ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { result, totalResults in
+            switch(result) {
+            case .success(let newsModels):
+                print(totalResults,newsModels.count, self.pageNumber)
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.activityIndicator.stopAnimating()
+                    //self?.activityIndicator.hidesWhenStopped
+                    self.totalResultCount = totalResults
+                    if self.pageNumber > 1 {
+                        self.selectedNewsList.append(contentsOf: newsModels)
+                    } else {
+                        self.selectedNewsList = newsModels
+                    }
+                    
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
                 print("Error occurred \(error)")
-                return
             }
-            print(totalResults,newsModels.count, self.pageNumber)
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                self.activityIndicator.stopAnimating()
-                //self?.activityIndicator.hidesWhenStopped
-                self.totalResultCount = totalResults
-                if self.pageNumber > 1 {
-                    self.selectedNewsList.append(contentsOf: newsModels)
-                } else {
-                    self.selectedNewsList = newsModels
-                }
-                
-                self.tableView.reloadData()
-            }
+            //            if let error = error {
+            //                print("Error occurred \(error)")
+            //                return
+            //            }
+            //            print(totalResults,newsModels.count, self.pageNumber)
+            //            DispatchQueue.main.async { [weak self] in
+            //                guard let self = self else {
+            //                    return
+            //                }
+            //                self.activityIndicator.stopAnimating()
+            //                //self?.activityIndicator.hidesWhenStopped
+            //                self.totalResultCount = totalResults
+            //                if self.pageNumber > 1 {
+            //                    self.selectedNewsList.append(contentsOf: newsModels)
+            //                } else {
+            //                    self.selectedNewsList = newsModels
+            //                }
+            //
+            //                self.tableView.reloadData()
+            //            }
         }
     }
     
@@ -74,8 +95,8 @@ extension NewsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
         let model = selectedNewsList[indexPath.row]
-//        cell.textLabel?.text = indexPath.row.description
-//        cell.detailTextLabel?.text = model.author
+        //        cell.textLabel?.text = indexPath.row.description
+        //        cell.detailTextLabel?.text = model.author
         cell.authorTitleLabel.text = model.author
         cell.newTitleLabel.text = model.title
         cell.dateLabel.text = model.publishedAt
