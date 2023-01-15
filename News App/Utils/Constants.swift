@@ -19,4 +19,9 @@ class Constants {
         static let selectedCollectionCell = "SelectedCollectionCellColor"
         static let unselectedCollectionCell = "UnselectedCollectionCellColor"
     }
+    
+    class CoreDataConstants {
+        private init() {}
+        static let newsEntityName = "NewsCDModel"
+    }
 }
