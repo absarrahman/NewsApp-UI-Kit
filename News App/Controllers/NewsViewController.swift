@@ -16,6 +16,9 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let refreshControl = UIRefreshControl()
+
+    
     //var selectedNewsList: [NewsModel] = []
     var selectedNewsList: [NewsCDModel] = []
     
@@ -97,11 +100,26 @@ class NewsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchTextField.delegate = self
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
         initiateFetch()
         
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
     }
+    
+    @objc func refreshData() {
+        CoreDataHandler.shared.removeAllData {
+            selectedNewsList = []
+            tableView.reloadData()
+        }
+        UserDefaults.standard.set(0, forKey: "pageNumber.\(self.selectedCategory.rawValue)")
+        initiateFetch()
+        refreshControl.endRefreshing()
+    }
+    
     
 }
 

@@ -78,4 +78,16 @@ class CoreDataHandler {
         }
         return dataModel
     }
+    
+    func removeAllData(completion: ()->()) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.CoreDataConstants.newsEntityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataHandler.context.execute(deleteRequest)
+            try CoreDataHandler.context.save()
+            completion()
+        } catch {
+            print("Error deleting data: \(error)")
+        }
+    }
 }

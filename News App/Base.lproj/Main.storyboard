@@ -133,7 +133,7 @@
                         <outlet property="collectionView" destination="Eu6-3Y-QqP" id="jch-DL-7Oy"/>
                         <outlet property="searchTextField" destination="q78-Ti-gmw" id="oAH-dT-5Es"/>
                         <outlet property="tableView" destination="t1a-CS-IiY" id="qz2-wV-Z9Y"/>
-                        <segue destination="zww-WU-Sav" kind="show" identifier="goToNextView" id="b3m-An-TEX"/>
+                        <segue destination="zww-WU-Sav" kind="show" identifier="goToDetailsViewFromNews" id="b3m-An-TEX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAu-GC-myL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,7 +190,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Bookmark" image="bookmark.fill" catalog="system" selectedImage="bookmark.fill" id="dil-fn-x6H"/>
                     <connections>
-                        <segue destination="zww-WU-Sav" kind="show" id="LOO-cV-OXe"/>
+                        <segue destination="zww-WU-Sav" kind="show" identifier="goToDetailsViewFromBookmark" id="LOO-cV-OXe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeD-hd-2PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -215,7 +215,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b3m-An-TEX"/>
+        <segue reference="LOO-cV-OXe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
