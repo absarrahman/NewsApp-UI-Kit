@@ -10,12 +10,14 @@ import UIKit
 class NewsViewController: UIViewController {
     
     
+    @IBOutlet weak var searchTextField: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var selectedNewsList: [NewsModel] = []
+    //var selectedNewsList: [NewsModel] = []
+    var selectedNewsList: [NewsCDModel] = []
     
     var selectedCategory: NewsCategory = .all
     
@@ -26,48 +28,57 @@ class NewsViewController: UIViewController {
     
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
-        ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { result, totalResults in
-            switch(result) {
-            case .success(let newsModels):
-                print(totalResults,newsModels.count, self.pageNumber)
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else {
-                        return
+        
+        if (CoreDataHandler.shared.isEmpty) {
+            
+            ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { result, totalResults in
+                switch(result) {
+                case .success(let newsModels):
+                    print(totalResults,newsModels.count, self.pageNumber)
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        let newsCDModels = CoreDataHandler.shared.addDataToCoreDataFrom(apiModels: newsModels, category: self.selectedCategory)
+                        self.activityIndicator.stopAnimating()
+                        self.totalResultCount = totalResults
+                        if self.pageNumber > 1 {
+                            //self.selectedNewsList.append(contentsOf: newsModels)
+                            self.selectedNewsList.append(contentsOf: newsCDModels)
+                        } else {
+                            self.selectedNewsList = newsCDModels
+                        }
+                        
+                        self.tableView.reloadData()
                     }
-                    self.activityIndicator.stopAnimating()
-                    //self?.activityIndicator.hidesWhenStopped
-                    self.totalResultCount = totalResults
-                    if self.pageNumber > 1 {
-                        self.selectedNewsList.append(contentsOf: newsModels)
-                    } else {
-                        self.selectedNewsList = newsModels
-                    }
-                    
-                    self.tableView.reloadData()
+                case .failure(let error):
+                    print("Error occurred \(error)")
                 }
-            case .failure(let error):
-                print("Error occurred \(error)")
+                //            if let error = error {
+                //                print("Error occurred \(error)")
+                //                return
+                //            }
+                //            print(totalResults,newsModels.count, self.pageNumber)
+                //            DispatchQueue.main.async { [weak self] in
+                //                guard let self = self else {
+                //                    return
+                //                }
+                //                self.activityIndicator.stopAnimating()
+                //                //self?.activityIndicator.hidesWhenStopped
+                //                self.totalResultCount = totalResults
+                //                if self.pageNumber > 1 {
+                //                    self.selectedNewsList.append(contentsOf: newsModels)
+                //                } else {
+                //                    self.selectedNewsList = newsModels
+                //                }
+                //
+                //                self.tableView.reloadData()
+                //            }
             }
-            //            if let error = error {
-            //                print("Error occurred \(error)")
-            //                return
-            //            }
-            //            print(totalResults,newsModels.count, self.pageNumber)
-            //            DispatchQueue.main.async { [weak self] in
-            //                guard let self = self else {
-            //                    return
-            //                }
-            //                self.activityIndicator.stopAnimating()
-            //                //self?.activityIndicator.hidesWhenStopped
-            //                self.totalResultCount = totalResults
-            //                if self.pageNumber > 1 {
-            //                    self.selectedNewsList.append(contentsOf: newsModels)
-            //                } else {
-            //                    self.selectedNewsList = newsModels
-            //                }
-            //
-            //                self.tableView.reloadData()
-            //            }
+        } else {
+            self.activityIndicator.stopAnimating()
+            selectedNewsList = CoreDataHandler.shared.fetchAllDataFrom(categoryField: selectedCategory,queryField: searchTextField.text ?? "")
+            tableView.reloadData()
         }
     }
     
@@ -79,6 +90,7 @@ class NewsViewController: UIViewController {
         tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchTextField.delegate = self
         initiateFetch()
         
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
@@ -95,12 +107,10 @@ extension NewsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
         let model = selectedNewsList[indexPath.row]
-        //        cell.textLabel?.text = indexPath.row.description
-        //        cell.detailTextLabel?.text = model.author
-        cell.authorTitleLabel.text = model.author
-        cell.newTitleLabel.text = model.title
+        cell.authorTitleLabel.text = model.authorName
+        cell.newTitleLabel.text = model.newsTitle
         cell.dateLabel.text = model.publishedAt
-        cell.sourceTitleLabel.text = model.source.name
+        cell.sourceTitleLabel.text = model.sourceName
         
         return cell
         
@@ -108,6 +118,9 @@ extension NewsViewController : UITableViewDataSource {
     
     
 }
+
+
+// MARK: - TABLEVIEW DELEGATE
 
 extension NewsViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -140,6 +153,8 @@ extension NewsViewController : UICollectionViewDataSource {
     
 }
 
+// MARK: - Collection View Delegate
+
 extension NewsViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -151,5 +166,14 @@ extension NewsViewController : UICollectionViewDelegate {
         selectedCategory = NewsCategory.allCases[indexPath.row]
         initiateFetch()
         collectionView.reloadData()
+    }
+}
+
+extension NewsViewController : UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        print("YEEET")
+        initiateFetch()
+//        selectedNewsList = CoreDataHandler.shared.fetchAllDataFrom(categoryField: selectedCategory,queryField: searchTextField.text ?? "")
+//        tableView.reloadData()
     }
 }

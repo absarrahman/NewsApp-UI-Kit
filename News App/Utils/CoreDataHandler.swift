@@ -52,18 +52,25 @@ class CoreDataHandler {
         
     }
     
-    func fetchAllDataFrom(categoryField: NewsCategory = .all, newsTitle:String = "", sourceName: String = "") -> [NewsCDModel] {
+    func fetchAllDataFrom(categoryField: NewsCategory = .all, queryField: String) -> [NewsCDModel] {
         var dataModel: [NewsCDModel] = []
         do {
             let fetchRequest = NSFetchRequest<NewsCDModel>(entityName: Constants.CoreDataConstants.newsEntityName)
             
-            let categoryPredicate = NSPredicate(format: "category == %@ ", categoryField.rawValue)
-            let newsTitlePredicate = NSPredicate(format: "newsTitle contains[cd] %@ or newsTitle == %@", newsTitle)
-            let sourceNamePredicate = NSPredicate(format: "sourceName contains[cd] %@ or sourceName == %@", sourceName)
+            var categoryPredicate = NSPredicate(format: "category == %@", categoryField.rawValue)
+            //            let newsTitlePredicate = NSPredicate(format: "newsTitle contains[cd] %@ or newsTitle == %@", newsTitle,"")
+            //            let sourceNamePredicate = NSPredicate(format: "sourceName contains[cd] %@ or sourceName == %@", sourceName, "")
+            //
+            //            let finalPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,newsTitlePredicate,sourceNamePredicate])
             
-            let finalPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,newsTitlePredicate,sourceNamePredicate])
+            if !queryField.isEmpty {
+                let newsTitlePredicate = NSPredicate(format: "newsTitle contains[cd] %@", queryField)
+                let sourceNamePredicate = NSPredicate(format: "sourceName contains[cd] %@",queryField)
+                let queryPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [newsTitlePredicate,sourceNamePredicate])
+                categoryPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,queryPredicate])
+            }
             
-            fetchRequest.predicate = finalPredicate
+            fetchRequest.predicate = categoryPredicate
             
             dataModel = try CoreDataHandler.context.fetch(fetchRequest)
         } catch {
