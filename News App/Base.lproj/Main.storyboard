@@ -133,6 +133,7 @@
                         <outlet property="collectionView" destination="Eu6-3Y-QqP" id="jch-DL-7Oy"/>
                         <outlet property="searchTextField" destination="q78-Ti-gmw" id="oAH-dT-5Es"/>
                         <outlet property="tableView" destination="t1a-CS-IiY" id="qz2-wV-Z9Y"/>
+                        <segue destination="zww-WU-Sav" kind="show" identifier="goToNextView" id="b3m-An-TEX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAu-GC-myL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,12 +189,34 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bookmark" image="bookmark.fill" catalog="system" selectedImage="bookmark.fill" id="dil-fn-x6H"/>
+                    <connections>
+                        <segue destination="zww-WU-Sav" kind="show" id="LOO-cV-OXe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeD-hd-2PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3181" y="306"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="KWv-V6-wT7">
+            <objects>
+                <viewController id="zww-WU-Sav" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2eW-10-3AO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RXD-24-Uk6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Bc-yY-AgC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mdR-8G-vvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4136" y="306"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="b3m-An-TEX"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>

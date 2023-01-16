@@ -29,12 +29,18 @@ class NewsViewController: UIViewController {
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
         
-        if (CoreDataHandler.shared.isEmpty) {
+        let storedPageNumber = UserDefaults.standard.integer(forKey: "pageNumber.\(selectedCategory.rawValue)")
+        
+        if (CoreDataHandler.shared.isEmpty || storedPageNumber < pageNumber) {
             
-            ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { result, totalResults in
+            ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { [weak self] result, totalResults in
                 switch(result) {
                 case .success(let newsModels):
+                    guard let self = self else {
+                        return
+                    }
                     print(totalResults,newsModels.count, self.pageNumber)
+                    UserDefaults.standard.set(self.pageNumber, forKey: "pageNumber.\(self.selectedCategory.rawValue)")
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else {
                             return
@@ -128,6 +134,11 @@ extension NewsViewController : UITableViewDelegate {
             pageNumber += 1
             initiateFetch()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToNextView", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
