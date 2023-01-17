@@ -135,6 +135,7 @@ extension NewsViewController : UITableViewDataSource {
         cell.newTitleLabel.text = model.newsTitle
         cell.dateLabel.text = model.publishedAt
         cell.sourceTitleLabel.text = model.sourceName
+        cell.setBackgroundImageFrom(urlString: model.urlToImage ?? "https://via.placeholder.com/300/09f/fff.png?text=Image+not+found")
         
         return cell
         

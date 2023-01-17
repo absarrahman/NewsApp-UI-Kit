@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SDWebImage
+
 class NewsTableViewCell: UITableViewCell {
 
     
@@ -40,8 +42,8 @@ class NewsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setBackgroundImage(image: UIImage) {
-        
+    func setBackgroundImageFrom(urlString: String) {
+        backgroundImageView.sd_setImage(with: URL(string: urlString), placeholderImage: nil, options: [.progressiveLoad])
     }
     
 }
