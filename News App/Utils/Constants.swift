@@ -13,6 +13,7 @@ class Constants {
         private init(){}
         static let goToHome = "goToHome"
         static let goToDetailsViewFromNews = "goToDetailsViewFromNews"
+        static let goToBrowserView = "goToBrowserView"
     }
     
     class CommonConstants {

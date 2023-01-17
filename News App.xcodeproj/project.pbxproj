@@ -10,6 +10,7 @@
 		027573247BBCD9313E0F2DC3 /* Pods_News_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBAC697F05E7A1C61F2DBF3 /* Pods_News_App.framework */; };
 		5B03F27829767B23008D5F03 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B03F27729767B23008D5F03 /* news.json */; };
 		5B03F27B2976819B008D5F03 /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B03F27A2976819B008D5F03 /* NewsDetailsViewController.swift */; };
+		5B03F2A02976CAFF008D5F03 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B03F29F2976CAFF008D5F03 /* BrowserViewController.swift */; };
 		5B4AE35E29742281007389E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35D29742281007389E1 /* CoreDataHandler.swift */; };
 		5B4AE361297426E4007389E1 /* NewsCDModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */; };
 		5B4AE362297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		5B03F27729767B23008D5F03 /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
 		5B03F27A2976819B008D5F03 /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
+		5B03F29F2976CAFF008D5F03 /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		5B4AE35D29742281007389E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				5B581809296F343E0059CE73 /* NewsViewController.swift */,
 				5B58180B296F34C30059CE73 /* BookmarkViewController.swift */,
 				5B03F27A2976819B008D5F03 /* NewsDetailsViewController.swift */,
+				5B03F29F2976CAFF008D5F03 /* BrowserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			files = (
 				5B5817F6296F333B0059CE73 /* InitialViewController.swift in Sources */,
 				5B4AE361297426E4007389E1 /* NewsCDModel+CoreDataClass.swift in Sources */,
+				5B03F2A02976CAFF008D5F03 /* BrowserViewController.swift in Sources */,
 				5B4AE35E29742281007389E1 /* CoreDataHandler.swift in Sources */,
 				5B581811296F38F90059CE73 /* Secrets.swift in Sources */,
 				8927CFFC2971521B00E270EE /* NewsTableViewCell.swift in Sources */,

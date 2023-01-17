@@ -55,5 +55,13 @@ class NewsDetailsViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier ==  Constants.Routes.goToBrowserView) {
+            let vc = segue.destination as! BrowserViewController
+            vc.urlString = newsModel.url
+        }
+    }
+    
 
 }

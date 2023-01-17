@@ -263,6 +263,9 @@
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Click to view full news"/>
+                                                        <connections>
+                                                            <segue destination="fUd-1S-QDU" kind="presentation" identifier="goToBrowserView" id="UH7-0a-VoT"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lts-JF-IMt">
                                                         <rect key="frame" x="20" y="146.5" width="335" height="24"/>
@@ -356,6 +359,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdR-8G-vvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4135.1999999999998" y="305.39730134932535"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="gKG-0v-6vu">
+            <objects>
+                <viewController id="fUd-1S-QDU" customClass="BrowserViewController" customModule="News_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yEE-SY-3MO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-LB-yAX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="I2I-oM-XBe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="I2I-oM-XBe" firstAttribute="bottom" secondItem="aMG-LB-yAX" secondAttribute="bottom" id="3Mz-5u-hm8"/>
+                            <constraint firstItem="I2I-oM-XBe" firstAttribute="trailing" secondItem="aMG-LB-yAX" secondAttribute="trailing" id="AEh-bx-xo9"/>
+                            <constraint firstItem="aMG-LB-yAX" firstAttribute="leading" secondItem="I2I-oM-XBe" secondAttribute="leading" id="TU3-wi-CSP"/>
+                            <constraint firstItem="aMG-LB-yAX" firstAttribute="top" secondItem="I2I-oM-XBe" secondAttribute="top" id="u9p-Sf-eNh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="aMG-LB-yAX" id="gvH-X2-Vrb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hMS-0G-4jM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5150" y="299"/>
         </scene>
     </scenes>
     <designables>
