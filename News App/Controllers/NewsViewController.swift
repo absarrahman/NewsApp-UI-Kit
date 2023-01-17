@@ -203,6 +203,16 @@ extension NewsViewController : UITableViewDelegate {
         performSegue(withIdentifier: Constants.Routes.goToDetailsViewFromNews, sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") { _, _, _ in
+            // set bookmark of that index path
+        }
+        bookmarkAction.image = UIImage(systemName: "bookmark.fill")
+        bookmarkAction.backgroundColor = .systemYellow
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [bookmarkAction])
+        return swipeConfiguration
+    }
 }
 
 // MARK: - Collection View Datasource

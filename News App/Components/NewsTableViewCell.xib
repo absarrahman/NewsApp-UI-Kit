@@ -17,7 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="341" height="224"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAW-ni-rtv">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fza-uV-VjG">
+                        <rect key="frame" x="0.0" y="-1" width="341" height="224.66666666666669"/>
+                    </imageView>
+                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAW-ni-rtv">
                         <rect key="frame" x="0.0" y="0.0" width="341" height="224"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="R12-D4-lYF">
@@ -72,9 +75,6 @@
                             <constraint firstItem="R12-D4-lYF" firstAttribute="leading" secondItem="cfT-iH-JCe" secondAttribute="trailing" constant="20" id="pad-rr-SJA"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fza-uV-VjG">
-                        <rect key="frame" x="0.0" y="-1" width="341" height="224.66666666666669"/>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Fza-uV-VjG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9aJ-W9-QTg"/>
