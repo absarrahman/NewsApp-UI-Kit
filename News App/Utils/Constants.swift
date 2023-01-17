@@ -15,6 +15,10 @@ class Constants {
         static let goToDetailsViewFromNews = "goToDetailsViewFromNews"
     }
     
+    class CommonConstants {
+        static let refreshMinuteInterval:Double = 2.0
+    }
+    
     class ColorConstants {
         private init() {}
         static let selectedCollectionCell = "SelectedCollectionCellColor"
@@ -25,4 +29,11 @@ class Constants {
         private init() {}
         static let newsEntityName = "NewsCDModel"
     }
+    
+    class UserDefaultConstants {
+        private init() {}
+        static let lastUpdatedTimeInterval = "lastUpdatedTimeInterval"
+        static let pageNumber = "pageNumber"
+    }
+    
 }

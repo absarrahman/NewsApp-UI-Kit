@@ -26,15 +26,49 @@ class NewsViewController: UIViewController {
     
     var pageNumber = 1
     var totalResultCount = 0
+    var timeDifference = 0
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
         
-        let storedPageNumber = UserDefaults.standard.integer(forKey: "pageNumber.\(selectedCategory.rawValue)")
+        let storedPageNumber = UserDefaults.standard.integer(forKey: "\(Constants.UserDefaultConstants.pageNumber).\(selectedCategory.rawValue)")
+        
+        // IMPLEMENTATION
+        // CHECK whether the distance is less than or = 0
+        // if true then remove data, set pagenumber to 0 and start fetching
+        // else retrieve from Core data
+        let fetchedTimeInterval = UserDefaults.standard.double(forKey: Constants.UserDefaultConstants.lastUpdatedTimeInterval)
+        
+        print("FETCHED INTERVAL \(fetchedTimeInterval)")
+        
+//      Fetched time interval will never be zero. If zero then it means the user is new
+        if (fetchedTimeInterval != 0) {
+            let fetchedDate = Date(timeIntervalSince1970: fetchedTimeInterval)
+            let currentDate = Date()
+            let difference = Calendar.current.dateComponents([.second], from: currentDate, to: fetchedDate)
+            timeDifference = difference.second!
+            print("TIME difference \(difference)")
+        }
+        print("TIME difference global \(timeDifference)")
+        if (timeDifference <= 0) {
+            print("REMOVING DATA. TIME DIFF: \(timeDifference)")
+            CoreDataHandler.shared.removeAllData {
+                selectedNewsList = []
+            }
+        }
         
         if (CoreDataHandler.shared.isEmpty || storedPageNumber < pageNumber) {
+            
+            if (pageNumber == 1 && timeDifference <= 0) {
+                let date = Date() // current date and time
+                let minute = Constants.CommonConstants.refreshMinuteInterval
+                let storeDate = date.addingTimeInterval(minute*60)
+                let timeInterval = storeDate.timeIntervalSince1970
+                print("PAGE NUMBER \(pageNumber) \(timeInterval)")
+                UserDefaults.standard.setValue(timeInterval, forKey: Constants.UserDefaultConstants.lastUpdatedTimeInterval)
+            }
             
             ApiHandler.fetchAllDataBased(on: selectedCategory,pageNumber: pageNumber) { [weak self] result, totalResults in
                 switch(result) {
@@ -43,7 +77,7 @@ class NewsViewController: UIViewController {
                         return
                     }
                     print(totalResults,newsModels.count, self.pageNumber)
-                    UserDefaults.standard.set(self.pageNumber, forKey: "pageNumber.\(self.selectedCategory.rawValue)")
+                    UserDefaults.standard.set(self.pageNumber, forKey: "\(Constants.UserDefaultConstants.pageNumber).\(self.selectedCategory.rawValue)")
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else {
                             return
@@ -115,7 +149,8 @@ class NewsViewController: UIViewController {
             selectedNewsList = []
             tableView.reloadData()
         }
-        UserDefaults.standard.set(0, forKey: "pageNumber.\(self.selectedCategory.rawValue)")
+        UserDefaults.standard.set(0, forKey: "\(Constants.UserDefaultConstants.pageNumber).\(selectedCategory.rawValue)")
+        UserDefaults.standard.set(0, forKey: Constants.UserDefaultConstants.lastUpdatedTimeInterval)
         initiateFetch()
         refreshControl.endRefreshing()
     }
