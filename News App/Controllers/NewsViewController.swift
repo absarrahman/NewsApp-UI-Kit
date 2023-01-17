@@ -205,12 +205,30 @@ extension NewsViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") { _, _, _ in
+        let model = selectedNewsList[indexPath.row]
+        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") {_, _, completion in
             // set bookmark of that index path
+            
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+            
         }
         bookmarkAction.image = UIImage(systemName: "bookmark.fill")
         bookmarkAction.backgroundColor = .systemYellow
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: [bookmarkAction])
+        let shareAction  = UIContextualAction(style: .normal, title: "Share") {[weak self] _, _, completion in
+            
+            guard let self = self else { return }
+            let text = model.newsTitle
+            let url = URL(string: model.url!)!
+            
+            let activityViewController = UIActivityViewController(activityItems: [text ?? "", url], applicationActivities: nil)
+            self.present(activityViewController, animated: true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        shareAction.backgroundColor = .systemBlue
+        shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [bookmarkAction,shareAction])
         return swipeConfiguration
     }
 }
