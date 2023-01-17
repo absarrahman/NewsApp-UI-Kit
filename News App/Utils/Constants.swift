@@ -16,6 +16,7 @@ class Constants {
     }
     
     class CommonConstants {
+        private init() {}
         static let refreshMinuteInterval:Double = 2.0
     }
     
