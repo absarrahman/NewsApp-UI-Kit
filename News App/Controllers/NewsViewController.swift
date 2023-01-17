@@ -155,7 +155,7 @@ extension NewsViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToNextView", sender: nil)
+        performSegue(withIdentifier: Constants.Routes.goToDetailsViewFromNews, sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

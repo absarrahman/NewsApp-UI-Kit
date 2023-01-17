@@ -90,6 +90,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorTitleLabel" destination="cfT-iH-JCe" id="hUp-s6-2JB"/>
+                <outlet property="backgroundImageView" destination="Fza-uV-VjG" id="M7T-6u-7OG"/>
                 <outlet property="dateLabel" destination="BGy-Rp-qpa" id="HIz-PP-lbj"/>
                 <outlet property="newTitleLabel" destination="cJi-Bc-C01" id="z67-gT-3WL"/>
                 <outlet property="sourceTitleLabel" destination="02M-Hq-fyN" id="BnM-9P-rGg"/>

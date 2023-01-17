@@ -12,6 +12,7 @@ class Constants {
     class Routes {
         private init(){}
         static let goToHome = "goToHome"
+        static let goToDetailsViewFromNews = "goToDetailsViewFromNews"
     }
     
     class ColorConstants {
