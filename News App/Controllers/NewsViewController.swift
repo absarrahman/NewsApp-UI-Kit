@@ -155,6 +155,15 @@ class NewsViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Constants.Routes.goToDetailsViewFromNews) {
+            if let vc = segue.destination as? NewsDetailsViewController, let indexPath = tableView.indexPathForSelectedRow {
+                let model = selectedNewsList[indexPath.row]
+                vc.newsModel = model
+            }
+        }
+    }
+    
     
 }
 
