@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		027573247BBCD9313E0F2DC3 /* Pods_News_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBAC697F05E7A1C61F2DBF3 /* Pods_News_App.framework */; };
+		5B03F27829767B23008D5F03 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B03F27729767B23008D5F03 /* news.json */; };
 		5B4AE35E29742281007389E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35D29742281007389E1 /* CoreDataHandler.swift */; };
 		5B4AE361297426E4007389E1 /* NewsCDModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */; };
 		5B4AE362297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B03F27729767B23008D5F03 /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
 		5B4AE35D29742281007389E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B03F27929767B4F008D5F03 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				5B03F27729767B23008D5F03 /* news.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		5B5817E5296F333B0059CE73 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 			children = (
 				5B5817F1296F333B0059CE73 /* AppDelegate.swift */,
 				5B5817F3296F333B0059CE73 /* SceneDelegate.swift */,
+				5B03F27929767B4F008D5F03 /* Animations */,
 				8927CFF72971113200E270EE /* Components */,
 				5B581808296F34060059CE73 /* Controllers */,
 				8922C7FD296FB624002960FC /* Models */,
@@ -133,7 +144,6 @@
 				68B8479CB59B4EDB92C5A354 /* Pods-News App.debug.xcconfig */,
 				D1291A9647DEABBE60FBD86F /* Pods-News App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -226,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B03F27829767B23008D5F03 /* news.json in Resources */,
 				8922C80A296FDBF0002960FC /* CategoryCollectionViewCell.xib in Resources */,
 				5B581801296F333C0059CE73 /* LaunchScreen.storyboard in Resources */,
 				5B5817FE296F333C0059CE73 /* Assets.xcassets in Resources */,

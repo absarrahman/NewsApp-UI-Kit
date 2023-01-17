@@ -17,17 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="dHr-u5-mLj" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="37.5" y="64" width="300" height="267"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="news"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dHr-u5-mLj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KaP-bM-bQY"/>
+                            <constraint firstItem="dHr-u5-mLj" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="Zrw-3v-oqN"/>
+                            <constraint firstItem="dHr-u5-mLj" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="bNE-pu-uTy"/>
+                            <constraint firstItem="dHr-u5-mLj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="eIc-Cp-ibB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2VZ-IJ-XKi"/>
                     <connections>
+                        <outlet property="newsAnimation" destination="dHr-u5-mLj" id="7bZ-Y0-Xlh"/>
                         <segue destination="uIq-yF-OvH" kind="show" identifier="goToHome" id="AB2-XN-JmY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031.2977099236641" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1031.2" y="-28.335832083958024"/>
         </scene>
         <!--News-->
         <scene sceneID="HOz-AT-pFR">

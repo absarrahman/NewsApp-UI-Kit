@@ -7,5 +7,6 @@ target 'News App' do
 
   # Pods for News App
   pod 'SDWebImage', '~> 5.0'
+  pod 'lottie-ios'
 
 end

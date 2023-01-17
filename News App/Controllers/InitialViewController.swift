@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import Lottie
 
 class InitialViewController: UIViewController {
-
+    
+    @IBOutlet weak var newsAnimation: LottieAnimationView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {[weak self] in
-            self?.performSegue(withIdentifier: Constants.Routes.goToHome, sender: nil)
+        newsAnimation.loopMode = .playOnce
+        newsAnimation.animationSpeed = 1.5
+        newsAnimation.play {[weak self] _ in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: Constants.Routes.goToHome, sender: nil)
         }
     }
     
