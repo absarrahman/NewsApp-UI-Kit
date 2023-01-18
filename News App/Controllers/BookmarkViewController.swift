@@ -18,6 +18,8 @@ class BookmarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
+    @IBOutlet weak var bottomView: UIView!
+    
     var selectedCategory: NewsCategory = .all
     var selectedNewsList: [BookmarkCDModel] = []
     
@@ -34,7 +36,9 @@ class BookmarkViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        bottomView.layer.cornerRadius = bottomView.frame.height / 2
+        bottomView.clipsToBounds = true
         
         collectionView.delegate = self
         collectionView.dataSource = self

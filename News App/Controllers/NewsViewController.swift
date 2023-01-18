@@ -18,6 +18,7 @@ class NewsViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
 
+    @IBOutlet weak var bottomView: UIView!
     
     //var selectedNewsList: [NewsModel] = []
     var selectedNewsList: [NewsCDModel] = []
@@ -136,6 +137,10 @@ class NewsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchTextField.delegate = self
+        
+        bottomView.layer.cornerRadius = bottomView.frame.height / 2
+        bottomView.clipsToBounds = true
+        
         
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
