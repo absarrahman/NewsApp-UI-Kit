@@ -470,6 +470,7 @@
                         <outlet property="contentDetailsLabel" destination="lts-JF-IMt" id="Op7-Xd-2oQ"/>
                         <outlet property="dateLabel" destination="Lxw-iU-qb6" id="fuC-0L-R3F"/>
                         <outlet property="descriptionLabel" destination="PTh-2Z-Yen" id="sTV-Da-sKM"/>
+                        <outlet property="newViewHeightConstraint" destination="ISq-WE-7k1" id="pdo-o2-MRy"/>
                         <outlet property="newsDetailsView" destination="Zdd-A0-4QE" id="8i8-l7-uMg"/>
                         <outlet property="newsImageView" destination="vL4-8w-qcz" id="AOe-5m-KSa"/>
                         <outlet property="newsImageheightConstraint" destination="iCH-qw-FfR" id="Bh9-Xx-9U7"/>
