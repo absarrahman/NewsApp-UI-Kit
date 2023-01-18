@@ -32,6 +32,7 @@ class NewsViewController: UIViewController {
     
     fileprivate func initiateFetch() {
         activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
         
         let storedPageNumber = UserDefaults.standard.integer(forKey: "\(Constants.UserDefaultConstants.pageNumber).\(selectedCategory.rawValue)")
         
@@ -59,7 +60,7 @@ class NewsViewController: UIViewController {
             }
         }
         
-        if (CoreDataHandler.shared.isEmpty || storedPageNumber < pageNumber) {
+        if (CoreDataHandler.shared.isEmpty(category: selectedCategory) || storedPageNumber < pageNumber) {
             
             if (pageNumber == 1 && timeDifference <= 0) {
                 let date = Date() // current date and time
@@ -91,7 +92,7 @@ class NewsViewController: UIViewController {
                         } else {
                             self.selectedNewsList = newsCDModels
                         }
-                        
+                        self.view.isUserInteractionEnabled = true
                         self.tableView.reloadData()
                     }
                 case .failure(let error):
@@ -121,6 +122,7 @@ class NewsViewController: UIViewController {
         } else {
             self.activityIndicator.stopAnimating()
             selectedNewsList = CoreDataHandler.shared.fetchAllDataFrom(categoryField: selectedCategory,queryField: searchTextField.text ?? "")
+            view.isUserInteractionEnabled = true
             tableView.reloadData()
         }
     }
@@ -138,10 +140,14 @@ class NewsViewController: UIViewController {
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
-        initiateFetch()
+        //initiateFetch()
         
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initiateFetch()
     }
     
     @objc func refreshData() {
@@ -174,11 +180,14 @@ extension NewsViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
+        
         let model = selectedNewsList[indexPath.row]
+        let isBookmark = CoreDataHandler.shared.isBookmarkAvailableForThat(news: model)
         cell.authorTitleLabel.text = model.authorName
         cell.newTitleLabel.text = model.newsTitle
         cell.dateLabel.text = model.publishedAt
         cell.sourceTitleLabel.text = model.sourceName
+        cell.bookmarkImageView.alpha = isBookmark ? 1 : 0
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
         
         return cell
@@ -206,9 +215,21 @@ extension NewsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let model = selectedNewsList[indexPath.row]
-        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") {_, _, completion in
+        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") {[weak self] _, _, completion in
             // set bookmark of that index path
+            guard let self = self else {
+                return
+            }
             
+            if (model.isBookmarkEnabled) {
+                CoreDataHandler.shared.removeBookmarkBasedOnURL(urlString: model.url!, category: self.selectedCategory)
+            } else {
+                guard let bookmarkData = CoreDataHandler.shared.addNewsToBookmark(news: model, category: self.selectedCategory) else {
+                    return
+                }
+                print("SUCCESSFULLY ADDED BOOKMARK \(bookmarkData.authorName)")
+            }
+            model.isBookmarkEnabled = !model.isBookmarkEnabled
             tableView.reloadRows(at: [indexPath], with: .automatic)
             completion(true)
             

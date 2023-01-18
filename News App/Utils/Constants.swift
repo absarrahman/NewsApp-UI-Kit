@@ -31,6 +31,7 @@ class Constants {
     class CoreDataConstants {
         private init() {}
         static let newsEntityName = "NewsCDModel"
+        static let bookmarkEntityName = "BookmarkCDModel"
     }
     
     class UserDefaultConstants {

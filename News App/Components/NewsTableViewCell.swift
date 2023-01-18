@@ -17,6 +17,7 @@ class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var newTitleLabel: UILabel!
     
+    @IBOutlet weak var bookmarkImageView: UIImageView!
     
     @IBOutlet weak var authorTitleLabel: UILabel!
     

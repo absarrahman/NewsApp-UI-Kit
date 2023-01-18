@@ -19,19 +19,37 @@ class BookmarkViewController: UIViewController {
     
     
     var selectedCategory: NewsCategory = .all
+    var selectedNewsList: [BookmarkCDModel] = []
+    
+    fileprivate func fetchData() {
+        // Do any additional setup after loading the view.
+        selectedNewsList = CoreDataHandler.shared.fetchAllDataFromBookmark(categoryField: selectedCategory, queryField: searchTextField.text ?? "")
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
+        
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
+        fetchData()
     }
     
 }
+
+// MARK: - COLLECTION VIEW DATASOURCE
 
 extension BookmarkViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,6 +70,9 @@ extension BookmarkViewController : UICollectionViewDataSource {
     
     
 }
+
+// MARK: - COLLECTION VIEW DELEGATE
+
 extension BookmarkViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -60,6 +81,66 @@ extension BookmarkViewController : UICollectionViewDelegate {
             return
         }
         selectedCategory = NewsCategory.allCases[indexPath.row]
+        fetchData()
         collectionView.reloadData()
+        tableView.reloadData()
+    }
+}
+
+extension BookmarkViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        selectedNewsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
+        let model = selectedNewsList[indexPath.row]
+        cell.authorTitleLabel.text = model.authorName
+        cell.newTitleLabel.text = model.newsTitle
+        cell.dateLabel.text = model.publishedAt
+        cell.sourceTitleLabel.text = model.sourceName
+        cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
+        
+        return cell
+        
+    }
+}
+
+extension BookmarkViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.Routes.goToDetailsViewFromNews, sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let model = selectedNewsList[indexPath.row]
+        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") {[weak self] _, _, completion in
+            // set bookmark of that index path
+            guard let self = self else {
+                return
+            }
+            
+            CoreDataHandler.shared.removeBookmarkBasedOnURL(urlString: model.url!, category: self.selectedCategory)
+            self.fetchData()
+            completion(true)
+            
+        }
+        bookmarkAction.image = UIImage(systemName: "bookmark.fill")
+        bookmarkAction.backgroundColor = .systemYellow
+        let shareAction  = UIContextualAction(style: .normal, title: "Share") {[weak self] _, _, completion in
+            
+            guard let self = self else { return }
+            let text = model.newsTitle
+            let url = URL(string: model.url!)!
+            
+            let activityViewController = UIActivityViewController(activityItems: [text ?? "", url], applicationActivities: nil)
+            self.present(activityViewController, animated: true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        shareAction.backgroundColor = .systemBlue
+        shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [bookmarkAction,shareAction])
+        return swipeConfiguration
     }
 }
