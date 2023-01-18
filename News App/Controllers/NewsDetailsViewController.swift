@@ -51,7 +51,7 @@ class NewsDetailsViewController: UIViewController {
         contentDetailsLabel.text = newsModel.content
         descriptionLabel.text = newsModel.newsDescription
         
-        newsImageView.sd_setImage(with: URL(string: newsModel.urlToImage ?? "https://via.placeholder.com/300/09f/fff.png?text=Image+not+found"), placeholderImage: nil, options: [.progressiveLoad])
+        newsImageView.sd_setImage(with: URL(string: newsModel.urlToImage ?? Constants.CommonConstants.imageNotFound), placeholderImage: nil, options: [.progressiveLoad])
         
         // Do any additional setup after loading the view.
     }

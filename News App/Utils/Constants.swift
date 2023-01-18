@@ -19,6 +19,7 @@ class Constants {
     class CommonConstants {
         private init() {}
         static let refreshMinuteInterval:Double = 2.0
+        static let imageNotFound = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
     }
     
     class ColorConstants {

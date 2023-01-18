@@ -196,15 +196,100 @@
         <!--Bookmark-->
         <scene sceneID="oNB-aw-JGL">
             <objects>
-                <viewController id="WbE-bP-heX" sceneMemberID="viewController">
+                <viewController id="WbE-bP-heX" customClass="BookmarkViewController" customModule="News_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JPM-ab-2OZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fkh-Xu-1Qa" userLabel="Search View">
+                                <rect key="frame" x="20" y="64" width="335" height="50"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Eon-JZ-J0X">
+                                        <rect key="frame" x="20" y="10.5" width="30" height="28.5"/>
+                                        <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="mYS-cK-dp9"/>
+                                            <constraint firstAttribute="height" constant="30" id="mrh-uR-0Aq"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wfk-a0-iib">
+                                        <rect key="frame" x="70" y="15.5" width="245" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" name="SearchBarColor"/>
+                                <constraints>
+                                    <constraint firstItem="Eon-JZ-J0X" firstAttribute="centerY" secondItem="Fkh-Xu-1Qa" secondAttribute="centerY" id="73n-GT-XaR"/>
+                                    <constraint firstItem="Eon-JZ-J0X" firstAttribute="leading" secondItem="Fkh-Xu-1Qa" secondAttribute="leading" constant="20" id="JbR-es-rQb"/>
+                                    <constraint firstAttribute="height" constant="50" id="XF9-Ai-vWH"/>
+                                    <constraint firstItem="wfk-a0-iib" firstAttribute="centerY" secondItem="Fkh-Xu-1Qa" secondAttribute="centerY" id="mmF-ix-LBW"/>
+                                    <constraint firstAttribute="trailing" secondItem="wfk-a0-iib" secondAttribute="trailing" constant="20" id="o3r-jz-KWf"/>
+                                    <constraint firstItem="wfk-a0-iib" firstAttribute="leading" secondItem="Eon-JZ-J0X" secondAttribute="trailing" constant="20" id="ovr-zW-zUu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bD-nz-soK">
+                                <rect key="frame" x="20" y="134" width="335" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Npi-gY-fNf" userLabel="Category Collection View">
+                                <rect key="frame" x="20" y="190" width="335" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="ysr-Oc-xVP"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oWy-tU-S5t">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Egh-ka-DWM">
+                                        <rect key="frame" x="0.0" y="-24" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mDF-8i-v47">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qFW-0m-97f">
+                                <rect key="frame" x="20" y="290" width="335" height="308"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lEY-sx-LFO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Npi-gY-fNf" firstAttribute="leading" secondItem="lEY-sx-LFO" secondAttribute="leading" constant="20" id="8Zp-c7-ltP"/>
+                            <constraint firstItem="qFW-0m-97f" firstAttribute="leading" secondItem="lEY-sx-LFO" secondAttribute="leading" constant="20" id="NRi-PB-qxh"/>
+                            <constraint firstItem="lEY-sx-LFO" firstAttribute="trailing" secondItem="Fkh-Xu-1Qa" secondAttribute="trailing" constant="20" id="W6W-Tc-hRb"/>
+                            <constraint firstItem="lEY-sx-LFO" firstAttribute="trailing" secondItem="5bD-nz-soK" secondAttribute="trailing" constant="20" id="XJT-TO-7Li"/>
+                            <constraint firstItem="lEY-sx-LFO" firstAttribute="trailing" secondItem="qFW-0m-97f" secondAttribute="trailing" constant="20" id="Xg8-Lg-iSO"/>
+                            <constraint firstItem="lEY-sx-LFO" firstAttribute="trailing" secondItem="Npi-gY-fNf" secondAttribute="trailing" constant="20" id="ecc-jW-FkH"/>
+                            <constraint firstItem="Fkh-Xu-1Qa" firstAttribute="leading" secondItem="lEY-sx-LFO" secondAttribute="leading" constant="20" id="i3h-EJ-nxP"/>
+                            <constraint firstItem="5bD-nz-soK" firstAttribute="top" secondItem="Fkh-Xu-1Qa" secondAttribute="bottom" constant="20" id="liT-Ps-gRr"/>
+                            <constraint firstItem="Fkh-Xu-1Qa" firstAttribute="top" secondItem="lEY-sx-LFO" secondAttribute="top" constant="20" id="n6E-FF-zHr"/>
+                            <constraint firstItem="Npi-gY-fNf" firstAttribute="top" secondItem="5bD-nz-soK" secondAttribute="bottom" constant="20" id="pTO-nf-dbo"/>
+                            <constraint firstItem="5bD-nz-soK" firstAttribute="leading" secondItem="lEY-sx-LFO" secondAttribute="leading" constant="20" id="tjd-P7-vWl"/>
+                            <constraint firstItem="lEY-sx-LFO" firstAttribute="bottom" secondItem="qFW-0m-97f" secondAttribute="bottom" constant="20" id="vxg-UL-Dxy"/>
+                            <constraint firstItem="qFW-0m-97f" firstAttribute="top" secondItem="Npi-gY-fNf" secondAttribute="bottom" constant="20" id="wHq-Op-JpG"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bookmark" image="bookmark.fill" catalog="system" selectedImage="bookmark.fill" id="dil-fn-x6H"/>
                     <connections>
+                        <outlet property="collectionView" destination="Npi-gY-fNf" id="myj-OF-sV4"/>
+                        <outlet property="searchTextField" destination="wfk-a0-iib" id="lIi-0T-QDa"/>
+                        <outlet property="tableView" destination="qFW-0m-97f" id="h6w-xG-oKD"/>
                         <segue destination="zww-WU-Sav" kind="show" identifier="goToDetailsViewFromBookmark" id="LOO-cV-OXe"/>
                     </connections>
                 </viewController>
@@ -407,7 +492,7 @@
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <namedColor name="NewsDetailsViewColor">
-            <color red="0.16862745098039217" green="0.20392156862745098" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16899999976158142" green="0.20399999618530273" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SearchBarColor">
             <color red="0.96299999952316284" green="0.96299999952316284" blue="0.96299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
