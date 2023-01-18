@@ -180,6 +180,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yyq-LS-h7C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -453,7 +458,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RXD-24-Uk6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="SelectedCollectionCellColor"/>
                         <constraints>
                             <constraint firstItem="Zdd-A0-4QE" firstAttribute="height" secondItem="2eW-10-3AO" secondAttribute="height" multiplier="0.7" id="ISq-WE-7k1"/>
                             <constraint firstItem="RXD-24-Uk6" firstAttribute="trailing" secondItem="vL4-8w-qcz" secondAttribute="trailing" id="K7D-rj-dZL"/>
