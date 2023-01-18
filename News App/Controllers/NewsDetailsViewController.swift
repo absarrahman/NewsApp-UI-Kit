@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class NewsDetailsViewController: UIViewController {
-
+    
     @IBOutlet weak var newsDetailsView: UIView!
     
     
@@ -27,8 +27,13 @@ class NewsDetailsViewController: UIViewController {
     
     @IBOutlet weak var contentDetailsLabel: UILabel!
     
+    @IBOutlet weak var newsImageheightConstraint: NSLayoutConstraint!
     
     var newsModel: NewsCDModel!
+    
+    private var lastContentOffset: CGFloat = 0
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent
@@ -53,6 +58,7 @@ class NewsDetailsViewController: UIViewController {
         
         newsImageView.sd_setImage(with: URL(string: newsModel.urlToImage ?? Constants.CommonConstants.imageNotFound), placeholderImage: nil, options: [.progressiveLoad])
         
+        scrollView.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -63,5 +69,41 @@ class NewsDetailsViewController: UIViewController {
         }
     }
     
+}
 
+extension NewsDetailsViewController : UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // move up
+            print("UP")
+        }
+        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // move down
+            print("DOWN")
+        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+        print(lastContentOffset)
+        
+        UIView.animate(withDuration: 0, delay: 0) { [weak self] in
+            guard let self = self else { return }
+            self.newsImageheightConstraint.constant = self.lastContentOffset
+        }
+        
+        
+        
+        //        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        //        print("MAX OFFSET \(maximumOffset)",scrollView.contentSize.height, scrollView.frame.height)
+        //        if scrollView.contentOffset.y >= maximumOffset {
+        //            scrollView.contentOffset.y = maximumOffset
+        //            print("SCROLL EVENT OFFSET \(scrollView.contentOffset.y)")
+        //        }
+        ////
+        ////        UIView.animate(withDuration: 0, delay: 0) {
+        ////            //heightConstraint.constant =
+        ////        }
+        
+    }
 }

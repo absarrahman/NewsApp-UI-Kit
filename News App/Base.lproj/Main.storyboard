@@ -472,7 +472,9 @@
                         <outlet property="descriptionLabel" destination="PTh-2Z-Yen" id="sTV-Da-sKM"/>
                         <outlet property="newsDetailsView" destination="Zdd-A0-4QE" id="8i8-l7-uMg"/>
                         <outlet property="newsImageView" destination="vL4-8w-qcz" id="AOe-5m-KSa"/>
+                        <outlet property="newsImageheightConstraint" destination="iCH-qw-FfR" id="Bh9-Xx-9U7"/>
                         <outlet property="newsTitleLabel" destination="HHx-1s-SB1" id="kbE-iS-WIq"/>
+                        <outlet property="scrollView" destination="01R-8e-wYg" id="A1f-rK-gCR"/>
                         <outlet property="sourceLabel" destination="Ctp-cd-IcL" id="H2L-VV-WyE"/>
                     </connections>
                 </viewController>
