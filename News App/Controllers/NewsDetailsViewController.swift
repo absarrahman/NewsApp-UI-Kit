@@ -32,7 +32,9 @@ class NewsDetailsViewController: UIViewController {
     
     @IBOutlet weak var newViewHeightConstraint: NSLayoutConstraint!
     
-    var newsModel: DetailsModel!
+    var detailsModel: DetailsModel!
+    
+    var newsModel: NewsCDModel?
     var isBookmark = false
     
     private var lastContentOffset: CGFloat = 0
@@ -54,16 +56,18 @@ class NewsDetailsViewController: UIViewController {
         newsDetailsView.clipsToBounds = true
         newsDetailsView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
-        newsTitleLabel.text = newsModel.newsTitle
-        dateLabel.text = newsModel.publishedAt
-        sourceLabel.text = newsModel.sourceName
-        contentDetailsLabel.text = newsModel.content
-        descriptionLabel.text = newsModel.newsDescription
-        isBookmark = newsModel.isBookmark
+        bookmarkItem.isHidden = newsModel == nil
+        
+        newsTitleLabel.text = detailsModel.newsTitle
+        dateLabel.text = detailsModel.publishedAt
+        sourceLabel.text = detailsModel.sourceName
+        contentDetailsLabel.text = detailsModel.content
+        descriptionLabel.text = detailsModel.newsDescription
+        isBookmark = detailsModel.isBookmark
         
         bookmarkItem.image = isBookmark ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
         
-        newsImageView.sd_setImage(with: URL(string: newsModel.urlToImage ?? Constants.CommonConstants.imageNotFound), placeholderImage: nil, options: [.progressiveLoad])
+        newsImageView.sd_setImage(with: URL(string: detailsModel.urlToImage ?? Constants.CommonConstants.imageNotFound), placeholderImage: nil, options: [.progressiveLoad])
         
         scrollView.delegate = self
         // Do any additional setup after loading the view.
@@ -72,12 +76,23 @@ class NewsDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier ==  Constants.Routes.goToBrowserView) {
             let vc = segue.destination as! BrowserViewController
-            vc.urlString = newsModel.url
+            vc.urlString = detailsModel.url
         }
     }
     
     @IBAction func bookmarkItemButtonTapped(_ sender: UIBarButtonItem) {
-        
+        if let model = newsModel, let category = NewsCategory(rawValue: model.category!) {
+            if (model.isBookmarkEnabled) {
+                CoreDataHandler.shared.removeBookmarkBasedOnURL(urlString: model.url!, category: category)
+            } else {
+                guard let bookmarkData = CoreDataHandler.shared.addNewsToBookmark(news: model, category: category) else {
+                    return
+                }
+                print("SUCCESSFULLY ADDED BOOKMARK \(bookmarkData.authorName)")
+            }
+            isBookmark = !isBookmark
+            bookmarkItem.image = isBookmark ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
+        }
     }
 }
 

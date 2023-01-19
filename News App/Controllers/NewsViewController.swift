@@ -170,7 +170,8 @@ class NewsViewController: UIViewController {
         if (segue.identifier == Constants.Routes.goToDetailsViewFromNews) {
             if let vc = segue.destination as? NewsDetailsViewController, let indexPath = tableView.indexPathForSelectedRow {
                 let model = selectedNewsList[indexPath.row]
-                vc.newsModel = DetailsModel(newsTitle: model.newsTitle, publishedAt: model.publishedAt, sourceName: model.sourceName, content: model.content, newsDescription: model.newsDescription, url: model.url, isBookmark: model.isBookmarkEnabled, urlToImage: model.urlToImage)
+                vc.newsModel = model
+                vc.detailsModel = DetailsModel(newsTitle: model.newsTitle, publishedAt: model.publishedAt, sourceName: model.sourceName, content: model.content, newsDescription: model.newsDescription, url: model.url, isBookmark: CoreDataHandler.shared.isBookmarkAvailableForThat(news: model), urlToImage: model.urlToImage)
             }
         }
     }
