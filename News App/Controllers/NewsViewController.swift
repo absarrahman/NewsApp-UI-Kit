@@ -210,7 +210,8 @@ extension NewsViewController : UITableViewDataSource {
         let isBookmark = CoreDataHandler.shared.isBookmarkAvailableForThat(news: model)
         cell.authorTitleLabel.text = model.authorName
         cell.newTitleLabel.text = model.newsTitle
-        cell.dateLabel.text = model.publishedAt
+        //cell.dateLabel.text = model.publishedAt
+        cell.dateLabel.text = "Published \(CommonFunctions.postedBefore(date: model.publishedAt)) ago"
         cell.sourceTitleLabel.text = model.sourceName
         cell.bookmarkImageView.alpha = isBookmark ? 1 : 0
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)

@@ -59,7 +59,7 @@ class NewsDetailsViewController: UIViewController {
         bookmarkItem.isHidden = newsModel == nil
         
         newsTitleLabel.text = detailsModel.newsTitle
-        dateLabel.text = detailsModel.publishedAt
+        dateLabel.text = "Published \(CommonFunctions.postedBefore(date: detailsModel.publishedAt)) ago"
         sourceLabel.text = detailsModel.sourceName
         contentDetailsLabel.text = detailsModel.content
         descriptionLabel.text = detailsModel.newsDescription

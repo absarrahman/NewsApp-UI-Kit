@@ -110,7 +110,7 @@ extension BookmarkViewController : UITableViewDataSource {
         let model = selectedNewsList[indexPath.row]
         cell.authorTitleLabel.text = model.authorName
         cell.newTitleLabel.text = model.newsTitle
-        cell.dateLabel.text = model.publishedAt
+        cell.dateLabel.text = "Published \(CommonFunctions.postedBefore(date: model.publishedAt)) ago"
         cell.sourceTitleLabel.text = model.sourceName
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
         
