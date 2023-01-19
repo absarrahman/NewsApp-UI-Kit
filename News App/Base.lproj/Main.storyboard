@@ -330,7 +330,7 @@
                         <outlet property="collectionView" destination="Npi-gY-fNf" id="myj-OF-sV4"/>
                         <outlet property="searchTextField" destination="wfk-a0-iib" id="lIi-0T-QDa"/>
                         <outlet property="tableView" destination="qFW-0m-97f" id="h6w-xG-oKD"/>
-                        <segue destination="zww-WU-Sav" kind="show" identifier="goToDetailsViewFromBookmark" id="LOO-cV-OXe"/>
+                        <segue destination="zww-WU-Sav" kind="show" identifier="goToDetailsViewFromNews" id="LOO-cV-OXe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeD-hd-2PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -470,8 +470,15 @@
                             <constraint firstItem="Zdd-A0-4QE" firstAttribute="bottom" secondItem="RXD-24-Uk6" secondAttribute="bottom" id="uag-ij-HQH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9Bc-yY-AgC"/>
+                    <navigationItem key="navigationItem" id="9Bc-yY-AgC">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bookmark" catalog="system" id="o3C-2J-u5a">
+                            <connections>
+                                <action selector="bookmarkItemButtonTapped:" destination="zww-WU-Sav" id="4QR-fJ-E56"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bookmarkItem" destination="o3C-2J-u5a" id="BbX-YE-cDo"/>
                         <outlet property="contentDetailsLabel" destination="lts-JF-IMt" id="Op7-Xd-2oQ"/>
                         <outlet property="dateLabel" destination="Lxw-iU-qb6" id="fuC-0L-R3F"/>
                         <outlet property="descriptionLabel" destination="PTh-2Z-Yen" id="sTV-Da-sKM"/>
@@ -530,6 +537,7 @@
         <segue reference="LOO-cV-OXe"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>

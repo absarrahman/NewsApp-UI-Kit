@@ -12,6 +12,7 @@ class NewsDetailsViewController: UIViewController {
     
     @IBOutlet weak var newsDetailsView: UIView!
     
+    @IBOutlet weak var bookmarkItem: UIBarButtonItem!
     
     @IBOutlet weak var newsImageView: UIImageView!
     
@@ -31,7 +32,8 @@ class NewsDetailsViewController: UIViewController {
     
     @IBOutlet weak var newViewHeightConstraint: NSLayoutConstraint!
     
-    var newsModel: NewsCDModel!
+    var newsModel: DetailsModel!
+    var isBookmark = false
     
     private var lastContentOffset: CGFloat = 0
     
@@ -57,6 +59,9 @@ class NewsDetailsViewController: UIViewController {
         sourceLabel.text = newsModel.sourceName
         contentDetailsLabel.text = newsModel.content
         descriptionLabel.text = newsModel.newsDescription
+        isBookmark = newsModel.isBookmark
+        
+        bookmarkItem.image = isBookmark ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
         
         newsImageView.sd_setImage(with: URL(string: newsModel.urlToImage ?? Constants.CommonConstants.imageNotFound), placeholderImage: nil, options: [.progressiveLoad])
         
@@ -71,6 +76,9 @@ class NewsDetailsViewController: UIViewController {
         }
     }
     
+    @IBAction func bookmarkItemButtonTapped(_ sender: UIBarButtonItem) {
+        
+    }
 }
 
 extension NewsDetailsViewController : UIScrollViewDelegate {

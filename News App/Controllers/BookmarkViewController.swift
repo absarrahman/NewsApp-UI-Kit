@@ -51,6 +51,15 @@ class BookmarkViewController: UIViewController {
         fetchData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Constants.Routes.goToDetailsViewFromNews) {
+            if let vc = segue.destination as? NewsDetailsViewController, let indexPath = tableView.indexPathForSelectedRow {
+                let model = selectedNewsList[indexPath.row]
+                vc.newsModel = DetailsModel(newsTitle: model.newsTitle, publishedAt: model.publishedAt, sourceName: model.sourceName, content: model.content, newsDescription: model.newsDescription, url: model.url, isBookmark: true, urlToImage: model.urlToImage)
+            }
+        }
+    }
+    
 }
 
 // MARK: - COLLECTION VIEW DATASOURCE
@@ -146,5 +155,14 @@ extension BookmarkViewController : UITableViewDelegate {
         shareAction.image = UIImage(systemName: "square.and.arrow.up.fill")
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [bookmarkAction,shareAction])
         return swipeConfiguration
+    }
+}
+
+extension BookmarkViewController : UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        print("YEEET")
+        fetchData()
+//        selectedNewsList = CoreDataHandler.shared.fetchAllDataFrom(categoryField: selectedCategory,queryField: searchTextField.text ?? "")
+//        tableView.reloadData()
     }
 }
