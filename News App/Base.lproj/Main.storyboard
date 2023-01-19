@@ -24,12 +24,20 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="news"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Newsly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kh-DR-lI8">
+                                <rect key="frame" x="119.5" y="351" width="136.5" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" name="SelectedCollectionCellColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dHr-u5-mLj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KaP-bM-bQY"/>
+                            <constraint firstItem="5kh-DR-lI8" firstAttribute="top" secondItem="dHr-u5-mLj" secondAttribute="bottom" constant="20" id="Oy2-SJ-mle"/>
                             <constraint firstItem="dHr-u5-mLj" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="Zrw-3v-oqN"/>
+                            <constraint firstItem="5kh-DR-lI8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZuR-3x-Fbf"/>
                             <constraint firstItem="dHr-u5-mLj" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="bNE-pu-uTy"/>
                             <constraint firstItem="dHr-u5-mLj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="eIc-Cp-ibB"/>
                         </constraints>
@@ -385,9 +393,15 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNy-Xs-HJg">
                                                         <rect key="frame" x="92" y="190.5" width="191.5" height="34.5"/>
+                                                        <color key="backgroundColor" name="SelectedCollectionCellColor"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Click to view full news"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <segue destination="fUd-1S-QDU" kind="presentation" identifier="goToBrowserView" id="UH7-0a-VoT"/>
                                                         </connections>
@@ -530,9 +544,6 @@
             <point key="canvasLocation" x="5150" y="299"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="dHr-u5-mLj"/>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="b3m-An-TEX"/>
     </inferredMetricsTieBreakers>

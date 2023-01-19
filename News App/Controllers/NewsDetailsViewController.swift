@@ -82,7 +82,7 @@ class NewsDetailsViewController: UIViewController {
     
     @IBAction func bookmarkItemButtonTapped(_ sender: UIBarButtonItem) {
         if let model = newsModel, let category = NewsCategory(rawValue: model.category!) {
-            if (model.isBookmarkEnabled) {
+            if (isBookmark) {
                 CoreDataHandler.shared.removeBookmarkBasedOnURL(urlString: model.url!, category: category)
             } else {
                 guard let bookmarkData = CoreDataHandler.shared.addNewsToBookmark(news: model, category: category) else {

@@ -213,7 +213,7 @@ extension NewsViewController : UITableViewDataSource {
         //cell.dateLabel.text = model.publishedAt
         cell.dateLabel.text = "Published \(CommonFunctions.postedBefore(date: model.publishedAt)) ago"
         cell.sourceTitleLabel.text = model.sourceName
-        cell.bookmarkImageView.alpha = isBookmark ? 1 : 0
+        cell.bookmarkImageView.tintColor = isBookmark ? .white : .opaqueSeparator
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
         
         return cell

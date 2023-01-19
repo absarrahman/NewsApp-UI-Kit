@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AuthorAuthorAuthorAuthorAuthorAuthor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfT-iH-JCe">
-                                <rect key="frame" x="20" y="142.33333333333334" width="303.33333333333331" height="21"/>
+                                <rect key="frame" x="20" y="142.33333333333334" width="301" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                             <constraint firstItem="02M-Hq-fyN" firstAttribute="leading" secondItem="mAW-ni-rtv" secondAttribute="leading" constant="20" id="aB4-2o-jJv"/>
                             <constraint firstAttribute="bottom" secondItem="Fza-uV-VjG" secondAttribute="bottom" id="aF9-nU-898"/>
                             <constraint firstItem="cfT-iH-JCe" firstAttribute="top" secondItem="cJi-Bc-C01" secondAttribute="bottom" constant="10" id="bvw-Uu-Hza"/>
+                            <constraint firstItem="cfT-iH-JCe" firstAttribute="centerX" secondItem="mAW-ni-rtv" secondAttribute="centerX" id="fT1-FX-mWB"/>
                             <constraint firstItem="Fza-uV-VjG" firstAttribute="leading" secondItem="mAW-ni-rtv" secondAttribute="leading" id="jOm-uZ-nPZ"/>
                             <constraint firstItem="cfT-iH-JCe" firstAttribute="leading" secondItem="mAW-ni-rtv" secondAttribute="leading" constant="20" id="o51-7s-F5b"/>
                             <constraint firstItem="02M-Hq-fyN" firstAttribute="top" secondItem="mAW-ni-rtv" secondAttribute="top" constant="20" id="pHh-hf-3cq"/>
