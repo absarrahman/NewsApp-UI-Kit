@@ -94,6 +94,7 @@ class NewsViewController: UIViewController {
                             self.selectedNewsList = newsCDModels
                         }
                         self.view.isUserInteractionEnabled = true
+                        self.activityIndicator.alpha = 1
                         self.tableView.reloadData()
                     }
                 case .failure(let error):
@@ -175,6 +176,7 @@ class NewsViewController: UIViewController {
     }
     
     @objc func refreshData() {
+        activityIndicator.alpha = 0
         CoreDataHandler.shared.removeAllData {
             selectedNewsList = []
             tableView.reloadData()
