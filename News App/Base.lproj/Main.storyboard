@@ -117,7 +117,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-CS-IiY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-CS-IiY">
                                 <rect key="frame" x="20" y="270" width="335" height="325.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -289,7 +289,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qFW-0m-97f">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qFW-0m-97f">
                                 <rect key="frame" x="20" y="270" width="335" height="325.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -534,7 +534,7 @@
         <designable name="dHr-u5-mLj"/>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="LOO-cV-OXe"/>
+        <segue reference="b3m-An-TEX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark" catalog="system" width="110" height="128"/>
