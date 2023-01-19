@@ -102,15 +102,23 @@ class NewsViewController: UIViewController {
                     let alertController = UIAlertController(title: "Failed", message: "Failed to fetch data. Please try again", preferredStyle: .alert)
                     
     
-                    let saveAction = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+                    let tryAction = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
                         guard let self = self else {
                             return
                         }
                         self.initiateFetch()
                     }
                     
+                    let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { [weak self] _ in
+                        guard let self = self else {
+                            return
+                        }
+                        self.activityIndicator.stopAnimating()
+                    }
                     
-                    alertController.addAction(saveAction)
+                    
+                    alertController.addAction(tryAction)
+                    alertController.addAction(dismissAction)
 
                     DispatchQueue.main.async {[weak self] in
                         guard let self = self else {
