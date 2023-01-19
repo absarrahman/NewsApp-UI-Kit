@@ -98,6 +98,25 @@ class NewsViewController: UIViewController {
                     }
                 case .failure(let error):
                     print("Error occurred \(error)")
+                    let alertController = UIAlertController(title: "Failed", message: "Failed to fetch data. Please try again", preferredStyle: .alert)
+                    
+    
+                    let saveAction = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+                        guard let self = self else {
+                            return
+                        }
+                        self.initiateFetch()
+                    }
+                    
+                    
+                    alertController.addAction(saveAction)
+
+                    DispatchQueue.main.async {[weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.present(alertController, animated: true)
+                    }
                 }
                 //            if let error = error {
                 //                print("Error occurred \(error)")
