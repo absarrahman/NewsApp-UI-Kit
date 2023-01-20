@@ -45,7 +45,7 @@ class BookmarkViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
+        tableView.register(UINib(nibName: "CustomNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "customNewsTableViewCell")
         
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
         fetchData()
@@ -106,13 +106,14 @@ extension BookmarkViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customNewsTableViewCell", for: indexPath) as! CustomNewsTableViewCell
         let model = selectedNewsList[indexPath.row]
         cell.authorTitleLabel.text = model.authorName
-        cell.newTitleLabel.text = model.newsTitle
+        cell.newsTitleLabel.text = model.newsTitle
         cell.dateLabel.text = "Published \(CommonFunctions.postedBefore(date: model.publishedAt)) ago"
         cell.sourceTitleLabel.text = model.sourceName
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
+        cell.bookmarkImageView.tintColor = UIColor(named: Constants.ColorConstants.selectedCollectionCell)
         
         return cell
         

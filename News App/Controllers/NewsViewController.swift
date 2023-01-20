@@ -175,7 +175,7 @@ class NewsViewController: UIViewController {
 
         //initiateFetch()
         
-        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "newsTableViewCell")
+        tableView.register(UINib(nibName: "CustomNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "customNewsTableViewCell")
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
     }
     
@@ -214,16 +214,16 @@ extension NewsViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsTableViewCell", for: indexPath) as! NewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customNewsTableViewCell", for: indexPath) as! CustomNewsTableViewCell
         
         let model = selectedNewsList[indexPath.row]
         let isBookmark = CoreDataHandler.shared.isBookmarkAvailableForThat(news: model)
         cell.authorTitleLabel.text = model.authorName
-        cell.newTitleLabel.text = model.newsTitle
+        cell.newsTitleLabel.text = model.newsTitle
         //cell.dateLabel.text = model.publishedAt
         cell.dateLabel.text = "Published \(CommonFunctions.postedBefore(date: model.publishedAt)) ago"
         cell.sourceTitleLabel.text = model.sourceName
-        cell.bookmarkImageView.tintColor = isBookmark ? .white : .opaqueSeparator
+        cell.bookmarkImageView.tintColor = isBookmark ? UIColor(named: Constants.ColorConstants.selectedCollectionCell) : .opaqueSeparator
         cell.setBackgroundImageFrom(urlString: model.urlToImage ?? Constants.CommonConstants.imageNotFound)
         
         return cell
@@ -238,6 +238,9 @@ extension NewsViewController : UITableViewDataSource {
 
 extension NewsViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.masksToBounds = true
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
         if (indexPath.row == selectedNewsList.count - 1) && (selectedNewsList.count < totalResultCount) {
             pageNumber += 1
             initiateFetch()

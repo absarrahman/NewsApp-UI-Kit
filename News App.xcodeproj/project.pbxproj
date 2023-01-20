@@ -11,6 +11,8 @@
 		5B03F27829767B23008D5F03 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B03F27729767B23008D5F03 /* news.json */; };
 		5B03F27B2976819B008D5F03 /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B03F27A2976819B008D5F03 /* NewsDetailsViewController.swift */; };
 		5B03F2A02976CAFF008D5F03 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B03F29F2976CAFF008D5F03 /* BrowserViewController.swift */; };
+		5B19A633297A090D00413F84 /* CustomNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B19A631297A090D00413F84 /* CustomNewsTableViewCell.swift */; };
+		5B19A634297A090D00413F84 /* CustomNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B19A632297A090D00413F84 /* CustomNewsTableViewCell.xib */; };
 		5B4AE35E29742281007389E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35D29742281007389E1 /* CoreDataHandler.swift */; };
 		5B4AE361297426E4007389E1 /* NewsCDModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */; };
 		5B4AE362297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */; };
@@ -41,6 +43,8 @@
 		5B03F27729767B23008D5F03 /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
 		5B03F27A2976819B008D5F03 /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		5B03F29F2976CAFF008D5F03 /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		5B19A631297A090D00413F84 /* CustomNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsTableViewCell.swift; sourceTree = "<group>"; };
+		5B19A632297A090D00413F84 /* CustomNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNewsTableViewCell.xib; sourceTree = "<group>"; };
 		5B4AE35D29742281007389E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		5B4AE35F297426E4007389E1 /* NewsCDModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5B4AE360297426E4007389E1 /* NewsCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				8922C808296FDBF0002960FC /* CategoryCollectionViewCell.xib */,
 				8927CFFA2971521B00E270EE /* NewsTableViewCell.swift */,
 				8927CFFB2971521B00E270EE /* NewsTableViewCell.xib */,
+				5B19A631297A090D00413F84 /* CustomNewsTableViewCell.swift */,
+				5B19A632297A090D00413F84 /* CustomNewsTableViewCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 				8922C80A296FDBF0002960FC /* CategoryCollectionViewCell.xib in Resources */,
 				5B581801296F333C0059CE73 /* LaunchScreen.storyboard in Resources */,
 				5B5817FE296F333C0059CE73 /* Assets.xcassets in Resources */,
+				5B19A634297A090D00413F84 /* CustomNewsTableViewCell.xib in Resources */,
 				5B5817F9296F333B0059CE73 /* Main.storyboard in Resources */,
 				8927CFFD2971521B00E270EE /* NewsTableViewCell.xib in Resources */,
 			);
@@ -313,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5817F6296F333B0059CE73 /* InitialViewController.swift in Sources */,
+				5B19A633297A090D00413F84 /* CustomNewsTableViewCell.swift in Sources */,
 				5B4AE361297426E4007389E1 /* NewsCDModel+CoreDataClass.swift in Sources */,
 				5B03F2A02976CAFF008D5F03 /* BrowserViewController.swift in Sources */,
 				5B4AE35E29742281007389E1 /* CoreDataHandler.swift in Sources */,
