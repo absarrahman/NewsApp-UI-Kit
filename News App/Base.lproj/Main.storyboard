@@ -403,7 +403,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="fUd-1S-QDU" kind="presentation" identifier="goToBrowserView" id="UH7-0a-VoT"/>
+                                                            <action selector="goToBrowserButtonTapped:" destination="zww-WU-Sav" eventType="touchUpInside" id="59a-NR-kjl"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lts-JF-IMt">
@@ -503,6 +503,7 @@
                         <outlet property="newsTitleLabel" destination="HHx-1s-SB1" id="kbE-iS-WIq"/>
                         <outlet property="scrollView" destination="01R-8e-wYg" id="A1f-rK-gCR"/>
                         <outlet property="sourceLabel" destination="Ctp-cd-IcL" id="H2L-VV-WyE"/>
+                        <segue destination="fUd-1S-QDU" kind="presentation" identifier="goToBrowserView" id="hWH-c7-v5K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdR-8G-vvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -544,6 +545,9 @@
             <point key="canvasLocation" x="5150" y="299"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="dHr-u5-mLj"/>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="b3m-An-TEX"/>
     </inferredMetricsTieBreakers>

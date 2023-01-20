@@ -94,6 +94,46 @@ class NewsDetailsViewController: UIViewController {
             bookmarkItem.image = isBookmark ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
         }
     }
+    
+    @IBAction func goToBrowserButtonTapped(_ sender: UIButton) {
+//        performSegue(withIdentifier: Constants.Routes.goToBrowserView, sender: nil)
+        
+        CommonFunctions.isInternetCurrentlyAvailable {[weak self] result in
+            guard let self = self else { return }
+            switch(result) {
+            case.success( _):
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: Constants.Routes.goToBrowserView, sender: nil)
+                }
+            case .failure( _):
+                let alertController = UIAlertController(title: "Failed", message: "Failed to view news. Please make sure you have proper internet access", preferredStyle: .alert)
+                
+
+                let tryAction = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+                    guard let self = self else {
+                        return
+                    }
+                    self.goToBrowserButtonTapped(sender)
+                }
+                
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .default)
+                
+                
+                alertController.addAction(tryAction)
+                alertController.addAction(dismissAction)
+
+                DispatchQueue.main.async {[weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.present(alertController, animated: true)
+                }
+            }
+        }
+        
+    }
+    
+    
 }
 
 extension NewsDetailsViewController : UIScrollViewDelegate {
