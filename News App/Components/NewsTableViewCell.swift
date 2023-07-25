@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SDWebImage
+
 class NewsTableViewCell: UITableViewCell {
 
     
@@ -15,9 +17,11 @@ class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var newTitleLabel: UILabel!
     
+    @IBOutlet weak var bookmarkImageView: UIImageView!
     
     @IBOutlet weak var authorTitleLabel: UILabel!
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -37,6 +41,10 @@ class NewsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setBackgroundImageFrom(urlString: String) {
+        backgroundImageView.sd_setImage(with: URL(string: urlString), placeholderImage: nil, options: [.progressiveLoad])
     }
     
 }
